@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Maha Dev :: {{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="py-md-5 pt-5 pb-3 blog-post text-center">
+    <div class="container pt-lg-4 pt-md-3">
+        <span class="text">Пространство притяжени</span>
+        <h3 class="title-big text-center mb-md-4 mb-3">Регистрация</h3>
+    </div>
+</div>
+<div class="display-ad" style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+</div>
+<section class="blog-post-main">
+    <!--/blog-post-->
+ <div class="blog-content-inf pb-5">
+    <div class="container pb-lg-4">
+        <div class="single-post-image">
+                <div class="sing-post-thumb row">
+                   <div class="col-sm-12 mb-5">
+                        <a href="#url"><img src="{% static 'images/rewgister.jpg' %}" class="img-fluid radius-image" alt=""></a>
+                   </div>
+
+                </div>
+                <div class="single-post-content">
+                     <div class="com-content-article__body">
+                          <form method="post">
+                             {% csrf_token %}
+                             {{ form.as_p }}
+                             <button type="submit" class="btn btn-primary mt-3">Регистрация</button>
+                  </form>
+                     </div>
+                </div>
+            </div>
+       </div>
+ </div>
+</section>
+{% endblock %}

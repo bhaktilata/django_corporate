@@ -1,0 +1,62 @@
+{% load menu_rubric %}
+{% load menu %}
+{% load static %}
+{% load mptt_tags %}
+<header id="site-header" class="fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light stroke">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <span>Mahadeva</span>
+      </a>
+      <!-- если логотип является изображением, включите это
+        <a class="navbar-brand" href="#index.html">
+            <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+        </a> -->
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa icon-expand fa-bars"></span>
+        <span class="fa icon-close fa-times"></span>
+      </button>
+       <!--Navigation Panel-->
+    <div class="collapse navbar-collapse" id="navbarNav">
+         {% show_menu %}
+        <span class="navbar-text">
+            {% if request.user.is_authenticated %}
+                Привет {{ user.username }} | <a class="nav-link-text" href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+              <a class="nav-link-text" href="{% url 'register' %}">Регистрация</a> | <a class="nav-link-text" href="{% url 'login' %}">Авторизация</a>
+            {% endif %}
+        </span>
+     </div>
+   <!--//Navigation Panel-->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="popup ml-auto">
+          <a href="#menu" class="domain" data-toggle="modal" data-target="#DomainModal">
+            <div class="hamburger">
+              <span class="top-bar"></span>
+              <span class="middle-bar"></span>
+              <span class="bottom-bar"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- переключатель для светлой и темной темы -->
+      <div class="mobile-position ml-lg-2">
+        <nav class="navigation">
+          <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+              <input type="checkbox" id="checkbox">
+              <div class="mode-container">
+                <i class="gg-sun"></i>
+                <i class="gg-moon"></i>
+              </div>
+            </label>
+          </div>
+        </nav>
+      </div>
+      <!-- //toggle switch for light and dark theme -->
+    </nav>
+  </div>
+ </header>
+
+

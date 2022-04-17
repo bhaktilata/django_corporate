@@ -1,0 +1,45 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Путь восхождения{% endblock %}</title>
+    <meta name="title" content="Программирование Maha Deva">
+    <meta name="description" content="Разработка уникальных проектов и решений для бизнеса. Веб-дизайн и программирование интернет-сайтов" />
+    <meta name="keywords" content="Школа" />
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+    <!-- Google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    {% block css %}<link rel="stylesheet" href="{% static 'css/style-starter.css' %}">{% endblock %}
+    <!-- Template CSS -->
+
+  </head>
+  <body>
+{% include 'particls/header.html' %}
+<div class="header-gap">
+</div>
+{% include 'particls/modal.html' %}
+ <!--Messege Error or Success-->
+      {% if messages %}
+          {% for message in messages %}
+              {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" role="alert">
+                      {{ message }}
+                  </div>
+              {% else %}
+                  <div class="alert alert-{{ message.tags }}" role="alert">
+                      {{ message }}
+                  </div>
+             {% endif %}
+          {% endfor %}
+      {% endif %}
+  <!--//Messege-->
+{% block content %}{% endblock %}
+{% include 'particls/copyright.html' %}
+{% include 'particls/script.html' %}
+<script src="{% static 'js/script.js' %}"></script>
+ </body>
+</html>

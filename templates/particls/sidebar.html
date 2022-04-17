@@ -1,0 +1,42 @@
+ {% load static %}
+ {% load modul %}
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12 mt-lg-0 mt-5 ps-md-5">
+                    <aside class="sidebar">
+                        <!--div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title">
+                                <h4>Поиск</h4>
+                            </div>
+                            <form action="{% url 'search' %}" class="search-box" method="get">
+                                <div class="form-group">
+                                    <input type="search" name="s" placeholder="Поиск здесь..." required="">
+                                    <button><span class="fa fa-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title">
+                                <h4>Популярные материалы</h4>
+                            </div>
+                            {% get_popular_posts 6 %}
+                        </div>
+                         <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title">
+                                <h4>Последние статьи</h4>
+                            </div>
+                            {% get_last_posts 6 %}
+                         </div-->
+                        <!-- sidebar sticky -->
+                        <div class="sidebar-sticky">
+                            <div class="sidebar-sticky-fix">
+                                <!-- Tags Widget-->
+                                <div class="sidebar-widget popular-tags">
+                                    <div class="sidebar-title">
+                                        <h4>Теги</h4>
+                                    </div>
+                                    {% get_tags 6 %}
+                                 </div>
+                            </div>
+                        </div>
+                        <!-- //sidebar sticky -->
+                    </aside>
+                </div></html>

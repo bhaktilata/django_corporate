@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Maha Dev :: {{ block.super }}
+{% endblock %}
+ {% block css %}<link rel="stylesheet" href="{% static 'css/style-starter.css' %}">{% endblock %}
+{% block content %}
+<div class="py-md-5 pt-5 pb-3 blog-post text-center">
+    <div class="container pt-lg-4 pt-md-3">
+        <span class="text">Блог о Джанго</span>
+        <h3 class="title-big text-center mb-md-4 mb-3">{{ post.title }}</h3>
+        <div class="blog-post-align">
+            <div class="blog-post-img">
+                <a href="/author.html"><img src="{% static 'images/avatara.jpg' %}" alt="{{ post_item.title }}" class="img-fluid"></a>
+            </div>
+            <div class="blog-post-info">
+                <div class="author align-items-center mb-1">
+                    <a href="author.html"> Maha Deva</a> в <a href="#url"> Блоге </a>
+                </div>
+                <ul class="blog-meta">
+                    <li class="meta-item blog-lesson">
+                        <span class="meta-value"> {{ post.created_at|date:"j E Y" }} </span>
+                    </li>
+                    <li class="meta-item blog-students">
+                        <span class="meta-value"> Хиты: {{ post.views }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="display-ad" style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+</div>
+
+<section class="blog-post-main">
+    <!--/blog-post-->
+    <section class="blog-content-inf pb-5">
+        <div class="container pb-lg-4">
+            <div class="single-post-image">
+                <div class="post-content">
+                    {% if post.photo %}
+                          <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid mr-3" style="width: 100%;">
+                       {% else %}
+                          <img src="{% static 'images/ab.jpg' %}" alt="{{ post_item.title }}" class="img-fuild mr-3" style="width: 100%;">
+                       {% endif %}
+                </div>
+            </div>
+            <div class="single-post-content">
+              <blockquote class="blockquote my-5">
+                    <div class="icon-quote"><span class="fa fa-quote-left" aria-hidden="true"></span></div>
+                    Пишу и перевожу IT-статьи, а также книги. Увлекаюсь Python, Django, Web-разработкой и Big Data. Открыт к диалогу
+                    <footer class="blockquote-footer mt-3">
+                        Maha Deva</footer>
+                </blockquote>
+             <p>{{ post.full_text|safe|linebreaks }}llllll</p>
+                <div class="d-grid left-right mt-5 pb-md-5">
+                    <div class="buttons-singles tags">
+                        <!-- здесь у нас запрос, поэтому all-->
+                        <h4>Тэги :</h4>
+                        {% if post.tags.exists %}
+                            {% for tag in post.tags.all %}
+                        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <div class="buttons-singles">
+                        <h4>Соцсети :</h4>
+                        <a href="#blog-share"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                        <a href="#blog-share"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                        <a href="#blog-share"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                        <a href="#blog-share"><span class="fa fa-pinterest-p" aria-hidden=" true"></span></a>
+                    </div>
+                </div>
+
+<!--Commentssss-->
+      <!--List Comments-->
+                      <h3>{{ comments.count }} комментарий(я)</h3>
+       {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+               <strong>Комментарий: {{ forloop.counter }}</strong> :: <strong>Автор</strong>: {{ comment.name }} ::
+              <span class=" text-muted font-weight-normal">
+              <strong>Дата:</strong> {{ comment.created_at }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% empty %}
+             <p>Пока нет комментариев.</p>
+        {% endfor %}
+        <!--//List Comments-->
+        <div class="card-body">
+            {% if new_comment %}
+                <div class="alert alert-success" role="alert">Ваш комментарий ожидает модерации</div>
+            {% else %}
+            <!--Form Comment-->
+            <div class="leave-comment-form mt-5" id="reply">
+                    <h4 class="side-title mb-2">Оставить комментарий</h4>
+                    <p class="mb-4">Необходимые поля отмечены *
+
+<form method="post">
+     {% csrf_token %}
+{{ comment_form.non_field_errors }}
+    <div class="input-grids row">
+
+        <div class="form-group col-lg-12">
+            <div class="invalid-feedback">
+                {{ comment_form.body.errors }}
+            </div>
+        <label for="{{ comment_form.body.id_for_label }}">Ваше соoбщение:</label>
+             {{ comment_form.body }}
+        </div>
+
+        <div class="form-group col-lg-6">
+            <div class="invalid-feedback">
+                {{comment_form.name.errors }}
+            </div>
+            <label for="{{ comment_form.name.id_for_label }}">Ваше имя:</label>
+            {{ comment_form.name }}
+             <!--input type="text" name="Name" class="form-control" placeholder="Ваше имя*" required=""-->
+        </div>
+
+        <div class="form-group col-lg-6">
+            <div class="invalid-feedbak">
+                {{ comment_form.email.errors }}
+            </div>
+             <label for="{{ comment_form.email.id_for_label }}">Ваш E-mail:</label>
+            {{ comment_form.email }}
+            <!--input type="email" name="Email" class="form-control" placeholder="E-mail*" required=""-->
+        </div>
+    </div>
+
+       <div class="submit text-right">
+           <button class="btn btn-style btn-secondary">Добавить комментарий </button></div>
+   </form>
+      <!--//Form Comment-->
+            {% endif %}
+<!--//Commentssss-->
+
+<!--Comment Form-->
+<div class="leave-comment-form mt-5" id="reply">
+
+<!--//Comment Form-->
+</div>
+<p>
+<a href="{% url "post_mailing" slug %}">Поделиться этой записью</a>
+</p>
+                <!-- related posts -->
+            <div class="item mt-5 pt-lg-5">
+                <h3 class="section-title-left mb-4 pb-lg-2">Связанные материалы</h3>
+                <div class="row">
+                        {% for post in similar_posts %}
+                        <div class="col-md-4 mb-2">
+                            <div class="list-view list-view1">
+                                <div class="grids5-info">
+                                    <a href="{{ post.get_absolute_url }}" class="d-block zoom">
+                                        <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid radius-image news-image">
+                                    </a>
+                                    <div class="blog-info align-self">
+                                        <a href="{{ post.get_absolute_url }}" class="blog-desc1">{{ post.title }}</a>
+                                        <div class="author align-items-center">
+                                            <ul class="blog-meta">
+                                               <li class="meta-item blog-lesson">
+                                                <a href="/author.html">{{ post.author }}</a><br>
+                                               </li>
+                                               <li class="meta-item blog-lesson">
+                                                   <span class="meta-value">{{ post.created_at|date:"j E Y" }}</span>
+                                               </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+      </div>
+                    {% include 'particls/sidebar.html' %}
+
+                <!-- //related posts -->
+      </div>
+ </div>
+        <!--//blog-post-->
+
+</section>
+
+{% endblock %}

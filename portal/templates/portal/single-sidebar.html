@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load modul %}
+{% block title %}
+    Maha Dev :: {{ block.super }}
+{% endblock %}
+ {% block css %}
+<link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+{% endblock %}
+{% block content %}
+        <!-- inner banner -->
+        <section class="inner-banner py-5">
+            <div class="w3l-breadcrumb py-lg-5">
+                <div class="container pt-4 pb-sm-4">
+                    <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">{{ post.category.title }}</h4>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="index.html">Главная</a></li>
+                        <li class="active"><i class="fa fa-angle-right mx-2"></i>{{ post.title }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="shape">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280">
+                    <path fill-opacity="1">
+                        <animate attributeName="d" dur="20000ms" repeatCount="indefinite" values="M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z; M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;												 M0,64L48,74.7C96,85,192,107,288,133.3C384,160,480,192,576,170.7C672,149,768,75,864,80C960,85,1056,171,1152,181.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+                                                 M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;"></animate>
+
+                    </path>
+                </svg>
+            </div>
+        </section>
+        <!-- //inner banner -->
+
+        <!-- Blog-post -->
+        <section class="w3l-blogpost-content pt-5">
+            <div class="container py-md-5 py-4">
+                <div class="row">
+
+                    <!--Section Content Article -->
+                    <div class="text-11 col-lg-8">
+                        <div class="text11-content">
+                            <h3 class="title-big text-center mb-md-4 mb-3">{{ post.title }}</h3>
+                            <div class="blog-post-align">
+
+                                   <div class="single-post-image">
+                                       <div class="post-content">
+                                           {% if post.photo %}
+                                                <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid mr-3" style="width: 100%;">
+                                           {% else %}
+                                               <img src="{% static 'images/ab.jpg' %}" alt="{{ post_item.title }}" class="img-fuild mr-3" style="width: 100%;">
+                                           {% endif %}
+                                       </div>
+                                   </div>
+
+                                   <div class="blog-post-img">
+                                        <a href="/author.html"><img src="{{ post.title }}" alt="{{ post_item.title }}" class="img-fluid"></a>
+                                   </div>
+                            <!--Info Article-->
+                                  <div class="blog-post-info">
+                                      <div class="author align-items-center mb-1">
+                                          <b>Автор</b>: <a href="author.html">{{ post.author }}</a>
+                                      </div>
+                                      <ul class="blog-meta">
+                                          <li class="meta-item blog-lesson">
+                                              <span class="meta-value"><b>Дата публикации</b>: {{ post.created_at|date:"j E Y" }} </span>
+                                          </li>
+                                          <li class="meta-item blog-students">
+                                            <span class="meta-value"> <b>Хиты</b>: {{ post.views }}</span>
+                                          </li>
+                                          <li class="meta-item blog-students">
+                                            {% if post.tags.exists %}
+                                              <span>
+                                                 <b>Тэги</b>:
+                                                 {% for tag in post.tags.all %}
+                                                 <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+                                            {% endfor %}
+                                              </span>
+                                            {% endif %}
+                                          </li>
+                                       </ul>
+                                    </div>
+                                      <!--Info Article-->
+                                    <p>{{ post.full_text|safe|linebreaks }}</p>
+                                <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+  <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+</svg> <a href="{% url 'post_share' post.slug %}"> Поделиться записью</a>
+                                </p>
+                            </div>
+                         </div>
+                    </div>
+                        <!--//Section Content Article -->
+
+                           <!-- Sisebar -->
+                    <div class="sidebar-side col-lg-4 col-md-12 col-sm-12 mt-lg-0 mt-5 ps-md-5">
+                        <aside class="sidebar">
+                            <!-- search widget -->
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <div class="sidebar-title">
+                                    <h4>Поиск</h4>
+                                </div>
+                                <form action="{% url 'search' %}" class="search-box" method="get">
+                                    <div class="form-group">
+                                        <input type="search" name="search" placeholder="Поиск..." required="">
+                                        <button type="submit"><span class="fa fa-search"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+        <!-- popular topics widget -->
+                             <div class="sidebar-widget popular-posts">
+                                <div class="sidebar-title">
+                                    <h4>Популярные статьи</h4>
+                                </div>
+                                 {% get_popular_posts %}
+                             </div>
+         <!-- //popular topics widget -->
+                            <!-- recent post widget -->
+                            <div class="sidebar-widget popular-posts">
+                                <div class="sidebar-title">
+                                    <h4>Последние сататьи</h4>
+                                </div>
+                                {% get_last_posts %}
+                            </div>
+
+                            <!-- tags widget -->
+                            <div class="sidebar-sticky">
+                                <div class="sidebar-sticky-fix">
+                                    <div class="sidebar-widget popular-tags">
+                                        <div class="sidebar-title">
+                                            <h4>Тэги</h4>
+                                        </div>
+                                        {% get_tags %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- gallery Widget -->
+                            <div class="sidebar-widget instagram-widget">
+                                <div class="sidebar-title">
+                                    <h4>Gallery</h4>
+                                </div>
+                                <div class="images-outer">
+                                    <a href="blog-single.html">
+                                        <img src="{% static 'images/m1.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="/blog-single.html">
+                                        <img src="{% static 'images/m2.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="hblog-single.html">
+                                        <img src="{% static 'images/m3.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="/blog-single.html">
+                                        <img src="{% static 'images/m4.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>
+                   </div>
+                        <!--Section Similar Article -->
+                            <h4 class="mt-5">Похожие сообщения</h4>
+                            <div class="row">
+
+                                <div class="col-md-6 align-self">
+                                    <p class="mt-md-0 mt-4">Согласно закону свободной воли, до тех пор, пока мы предпочитаем верить в иллюзию
+                                        ограничения и разделения третьего измерения, это наш единственный “сознательный”
+                                        опыт. Когда реальность нашего высшего “Я” стала "бессознательной", мы забыли,
+                                        что Земля-это классная комната.</p>
+                                </div>
+                            </div>
+                         <!--//Section Similar Article -->
+
+               <!-- Page Navigation -->
+                            <div class="nav-links">
+                                <div class="nav-previous">
+                                    <a href="#url" rel="prev">
+                                        <img src="{% static 'images/m2.jpg' %}" alt="" class="img-fluid radius-image">
+                                        <div class="post-data align-self">
+                                            <span class="nav-arrow-label"><i class="fa fa-arrow-left me-1"></i>Предыдущий</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="nav-next text-end">
+                                    <a href="#url" rel="next">
+                                        <div class="post-data align-self">
+                                            <span class="nav-arrow-label">Следующий<i class="fa fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                        <img src="{% static 'images/m3.jpg' %}" alt="" class="img-fluid radius-image">
+                                    </a>
+                                </div>
+                            </div>
+                <!-- //Page Navigation -->
+
+                <!-- Section Comments List -->
+                        <div class="comments">
+                            <h3 class="aside-title ">Недавние комментарии</h3>
+                            <div class="comments-grids">
+                               <!--List Comments-->
+                               <h3>{{ comments.count }} комментарий(я)</h3>
+                               {% for comment in comments %}
+                               <div class="comments" style="padding: 10px;">
+                                   <p class="font-weight-bold">
+                                       <strong>Комментарий: {{ forloop.counter }}</strong> :: <strong>Автор</strong>: {{ comment.name }} ::
+                                       <span class=" text-muted font-weight-normal">
+                                          <strong>Дата:</strong> {{ comment.created_at }}
+                                          <a href="#comment" class="">Ответить</a>
+                                       </span>
+                                    </p>
+                                    {{ comment.body | linebreaks }}
+                               </div>
+                               {% empty %}
+                                   <p>Пока нет комментариев.</p>
+                               {% endfor %}
+                               <!--//List Comments-->
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                           {% if new_comment %}
+                               <div class="alert alert-success" role="alert">Ваш комментарий ожидает модерации</div>
+                           {% else %}
+                       </div>
+            <!--Form Comment-->
+<div class="leave-comment-form mt-5" id="reply">
+   <div class="leave-comment-form" id="comment">
+      <h3 class="aside-title mb-3">Оставьте комментарий</h3>
+          <form action="#" method="post">
+              {% csrf_token %}
+              {{ comment_form.non_field_errors }}
+               <div class="input-grids row">
+                      <div class="form-group col-lg-12">
+                           <div class="invalid-feedback">
+                                {{ comment_form.body.errors }}
+                            </div>
+
+                          <div class="form-group mt-1 mb-3">
+                              <label for="{{ comment_form.dody.id_for_label }}">Ваш комментарий:</label>
+                              {{ comment_form.body }}
+                          </div>
+                      </div>
+
+                           <div class="invalid-feedback">
+                              {{comment_form.name.errors }}
+                          </div>
+                          <div class="form-group mt-1 mb-3">
+                             <label for="{{ comment_form.name.id_for_label }}">Ваше имя:</label>
+                             {{ comment_form.name }}
+                          </div>
+                          <div class="invalid-feedbak">
+                               {{ comment_form.email.errors }}
+                          </div>
+                          <div class="form-group mt-1 mb-3">
+                              <label for="{{ comment_form.email.id_for_label }}">Ваш почтовый адрес:</label>
+                              {{ comment_form.email }}
+                           </div>
+                         <!--input type="text" name="Name" class="form-control" placeholder="Ваше имя*" required=""-->
+                           <div class="submit text-left">
+                              <button class="btn btn-style mt-2">Отправить</button>
+                           </div>
+              </div>
+          </form>
+
+
+      <!--//Form Comment-->
+  {% endif %}
+   </div>
+</div>
+<!--//Commentssss-->
+
+             </div>
+      </div>
+ </section>
+{% endblock %}

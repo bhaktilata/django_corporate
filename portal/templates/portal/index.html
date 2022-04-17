@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Maha Dev :: {{ block.super }}
+{% endblock %}
+{% block content %}
+{% include 'sections/banner.html' %}
+{% include 'sections/service.html' %}
+{% include 'sections/skills.html' %}
+{% include 'sections/awards.html' %}
+{# include 'sections/testimonials.html' #}
+{% include 'sections/clients.html' %}
+{# include 'sections/contact.html' #}
+
+{% endblock %}

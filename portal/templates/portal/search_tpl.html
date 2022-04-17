@@ -1,0 +1,20 @@
+{% load static %}
+
+    {% for post in search_posts %}
+    <article class="post">
+        <figure class="post-thumb">
+             {% if post.photo %}
+                 <img src="{{ post.photo.url }}" class="radius-image img-fluid" alt="{{ post.title }}" />
+             {% else %}
+                 <a href="{{ post.get_absolute_url }}">
+                    <img src="{% static 'images/c3.jpg' %}" class="radius-image img-fluid" alt="{{ post.title }}">
+                 </a>
+             {% endif %}
+        </figure>
+        <div class="text">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a><br>
+            {{ post.created_at|date:"j E Y H:i" }}
+        </div>
+
+    </article>
+{% endfor %}</html>

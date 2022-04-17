@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Maha Dev :: {{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="py-md-5 pt-5 pb-3 blog-post text-center">
+    <div class="container pt-lg-4 pt-md-3">
+        <span class="text">Пространство притяжени</span>
+        <h3 class="title-big text-center mb-md-4 mb-3">Контакты</h3>
+    </div>
+</div>
+<section class="blog-post-main">
+    <!--/blog-post-->
+ <div class="blog-content-inf pb-5">
+    <div class="container pb-lg-4">
+        <div class="single-post-image">
+                <div class="sing-post-thumb row">
+                   <div class="col-sm-12">
+                        <a href="#url"><img src="{% static 'images/web.jpg' %}" class="img-fluid radius-image" alt=""></a>
+                   </div>
+                </div>
+   <div class="sing-post-thumb row">
+
+                   <div class="col-sm-12">
+                        <a href="#url"><img src="{% static 'images/' %}" class="img-fluid radius-image" alt=""></a>
+                   </div>
+                </div>
+                <div class="single-post-content">
+                     <div class="com-content-article__body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary btn-block mt-3">Отправить</button>
+                        </form>
+                     </div>
+                </div>
+        </div>
+    </div>
+ </div>
+</section>
+{% endblock %}

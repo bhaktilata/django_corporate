@@ -1,0 +1,22 @@
+
+<div class="collapse navbar-collapse" id="navbarNav">
+{% load mptt_tags %}
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item @@home__active">
+            <a class="nav-link" href="{% url 'home' %}">Главная</a>
+    </li>
+    {% recursetree categorys %}
+        <li class="nav-item @@portfolio__active">
+            <a href="{{ node.get_absolute_url }}">{{ node.title }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+</div>
+<h2>Категории</h2>
+
+
