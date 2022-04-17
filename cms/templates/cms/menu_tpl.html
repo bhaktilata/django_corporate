@@ -1,0 +1,10 @@
+<ul class="navbar-nav ml-auto">
+  <!-- categories находится в menu.py show_menu -->
+                {% for item in rubrics %}
+                {% if item.visible %}
+                    <li class="nav-item @@portfolio__active">
+                        <a class="nav-link" href="{{ item.get_absolute_url }}">{{ item.title_menu }}</a>
+                    </li>
+                {% endif %}
+                 {% endfor %}
+</ul>

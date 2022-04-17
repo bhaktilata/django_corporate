@@ -1,0 +1,30 @@
+<div class="collapse navbar-collapse" id="navbarNav">
+{% load static mptt_tags %}
+<ul>
+    {% recursetree rubrics %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+</div>
+
+
+{% recursetree rubrics %}
+    <li>
+        <a class="btn btn__light" href="{% url 'category' node.slug %}">
+            <span style="flex: 1 1 auto;">{{ node.name }}</span>{% if not node.is_leaf_node %}
+            <span>&nbsp;</span><span class="fa fa-angle-right"></span>{% endif %}
+        </a>
+        {% if not node.is_leaf_node %}
+            <ul  class="site_nav_primary__submenu ul__column white_box">
+                {{ children }}
+            </ul>
+        {% endif %}
+    </li>
+{% endrecursetree %}
