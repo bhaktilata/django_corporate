@@ -211,6 +211,6 @@ MPTT_ADMIN_LEVEL_INDENT = 20
 EMAIL_HOST = 'smtp.beget.com'
 EMAIL_PORT = 465 # 2525
 EMAIL_HOST_USER = 'admin@inicons.ru' # email user
-EMAIL_HOST_PASSWORD = '7GVa*adzKs^3mk9'
+EMAIL_HOST_PASSWORD = 'ggggggggg'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
