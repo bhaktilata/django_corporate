@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Институт сознания :: {{ block.super }}
+{% endblock %}
+{% block content %}
+
+
+{% include 'sections/slider.html' %}
+{% include 'sections/approach.html' %}
+{% include 'sections/invest.html' %}
+{% include 'sections/projects.html' %}
+{% include 'sections/pricing.html' %}
+{% include 'sections/testimonials.html' %}
+
+
+{% endblock %}

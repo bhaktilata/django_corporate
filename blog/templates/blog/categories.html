@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Институт сознания :: {{ block.super }}
+{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">{% endblock %}
+{% block content %}
+        <!-- inner banner -->
+        <section class="inner-banner py-5">
+            <div class="w3l-breadcrumb py-lg-5">
+                <div class="container pt-4 pb-sm-4">
+                    <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">Список категорий</h4>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="/index.html">Главная</a></li>
+                        <li class="active"><i class="fas fa-angle-right mx-2"></i>Категории</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="shape">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280">
+                    <path fill-opacity="1">
+                        <animate attributeName="d" dur="20000ms" repeatCount="indefinite" values="M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z; M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;												 M0,64L48,74.7C96,85,192,107,288,133.3C384,160,480,192,576,170.7C672,149,768,75,864,80C960,85,1056,171,1152,181.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+                                                 M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;"></animate>
+
+                    </path>
+                </svg>
+            </div>
+        </section>
+        <!-- //inner banner -->
+   <div style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+   </div>
+        <!-- blog-post -->
+        <section class="w3l-blogpost-content pt-5">
+            <div class="container py-md-5 py-4">
+                <div class="row">
+                    <div class="col-lg-8">
+
+                        {% if category_blog %}
+                        {% for item in category_blog %}
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                   {% if item.photo %}
+                                    <a href="{{ item.get_absolute_url }}">
+                                        <img class="card-img-bottom d-block radius-image-full" src="{{ item.photo.url }}" alt="{{ item.title }}">
+                                    </a>
+                                   {% else %}
+                                    <a href="{{ item.get_absolute_url }}"><img src="{% static 'images/blog4.jpg' %}" alt="{{ post.title }}"
+                                                                               class="img-fuild mr-3" style="width: 350px; float: left;"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body blog-details">
+                                    <a href="{{ item.get_absolute_url }}" class="blog-desc">{{ item.title }}</a>
+                                    <p>{{ item.content|safe|truncatechars_html:300 }}</p>
+                                    <a href="{{ item.get_absolute_url }}" class="blog-desc"><button type="button" class="btn btn-primary">Узнать поробности</button></a>
+                                </div>
+                            </div>
+                       {% endfor %}
+                       {% else %}
+                       <h2>В категории пока нет материалов</h2>
+                       {% endif %}
+                                                    <!-- Pagination -->
+                   <div class="pagination-wrapper mt-5 px-5">
+                       {% if page_obj.has_other_pages %}
+                     <nav aria-label="...">
+                       <ul class="page-pagination">
+                           {% if page_obj.has_previous %}
+                           <li class="page-item">
+                              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Предыдущая</a>
+                           </li>
+                           {% endif %}
+                           {% for p in page_obj.paginator.page_range %}
+                               {% if page_obj.number == p %}
+                                  <li class="page-item active" aria-current="page">
+                                      <a class="page-link" href="?page={{ p }}">{{ p }} <span class="sr-only"></span></a>
+                                  </li>
+                                {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                                  <li class="page-item">
+                                      <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                  </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Последующая</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                       </nav>
+                            {% endif %}
+                    </div>
+                    </div>
+                      {% include 'inc/sidebar.html' %}
+                </div>
+            </div>
+        </section>
+        <!-- //blog-posts -->
+<div style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+</div>
+{% endblock %}

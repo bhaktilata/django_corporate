@@ -4,28 +4,20 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}Путь восхождения{% endblock %}</title>
-    <meta name="title" content="Программирование Maha Deva">
-    <meta name="description" content="Разработка уникальных проектов и решений для бизнеса. Веб-дизайн и программирование интернет-сайтов" />
-    <meta name="keywords" content="Школа" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Интеллектуальные системы IRBIS{% endblock %}</title>
+    <meta name="description"  content="{% block description %}Разработка интеллектуальных систем обучения и решений для бизнеса{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}Intelligent Tutoring Systems, интеллектуальные системы обучения, irbis{% endblock %}" />
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" >
-    <!-- Google fonts -->
-    <link href="//fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-    {% block css %}<link rel="stylesheet" href="{% static 'css/style-starter.css' %}">{% endblock %}
-    <!-- Template CSS -->
 
+   {% block css %}<link rel="stylesheet" href="{% static 'css/style-starter.css' %}">{% endblock %}
   </head>
   <body>
-{% include 'particls/header.html' %}
-<div class="header-gap">
-</div>
-{% include 'particls/modal.html' %}
+  {% include 'particls/header.html' %}
  <!--Messege Error or Success-->
-      {% if messages %}
+        {% if messages %}
           {% for message in messages %}
-              {% if message.tags == 'error' %}
+              {% if message.tags == 'error' %} <!--таких тегов есть несколько: error, success, info, debug, warning -->
                   <div class="alert alert-danger" role="alert">
                       {{ message }}
                   </div>
@@ -38,8 +30,8 @@
       {% endif %}
   <!--//Messege-->
 {% block content %}{% endblock %}
-{% include 'particls/copyright.html' %}
-{% include 'particls/script.html' %}
-<script src="{% static 'js/script.js' %}"></script>
+{% include 'particls/footer.html' %}
+{% include 'particls/scripts.html' %}
+
  </body>
 </html>

@@ -1,0 +1,11 @@
+User-Agent: *
+Disallow: /portal/
+Disallow: /portfolio/
+Disallow: /templates/
+Disallow: /static/
+Disallow: /manage.py
+Disallow: /wsgi.py
+Allow: /media/
+Allow: /static/images/
+
+Sitemap: http://127.0.0.1:8000/sitemap.xml

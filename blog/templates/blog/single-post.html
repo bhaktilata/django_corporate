@@ -1,0 +1,183 @@
+ {% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ get_post.title }} :: {{ block.super }}{% endblock %}
+{% block description %}{{ get_post.description }}{% endblock %}
+{% block keywords %}django, разработка приложений на Джанго {% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">{% endblock %}
+{% block content %}
+
+        <!-- inner banner -->
+        <section class="inner-banner py-5">
+            <div class="w3l-breadcrumb py-lg-5">
+                <div class="container pt-4 pb-sm-4">
+                    <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">{{ get_post.title_seo }}</h4>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="{% url 'home' %}">Главная</a></li>
+                        <li class="active"><i class="fas fa-angle-right mx-2"></i>{{ get_post.title }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="shape">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280">
+                    <path fill-opacity="1">
+                        <animate attributeName="d" dur="20000ms" repeatCount="indefinite" values="M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z; M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;												 M0,64L48,74.7C96,85,192,107,288,133.3C384,160,480,192,576,170.7C672,149,768,75,864,80C960,85,1056,171,1152,181.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+                                                 M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;"></animate>
+                    </path>
+                </svg>
+            </div>
+        </section>
+        <!-- //inner banner -->
+        <!-- blog-post -->
+<section class="w3l-blogpost-content pt-5">
+    <div class="container py-md-5 py-4">
+        <div class="row">
+            <div class="text-11 col-lg-8">
+
+                <div class="text11-content">
+                    {% if get_post.photo %}
+                        <img src="{{ get_post.photo.url }}" alt="{{ get_post.title }}" class="img-fluid mr-3" style="width: 100%;">
+                    {% else %}
+                        <img src="{% static 'images/blog4.jpg' %}" alt="{{ get_post.title }}" class="img-fuild mr-3" style="width: 100%;">
+                    {% endif %}
+                        <p class="date-text mt-3"><i class="fa fa-users" aria-hidden="true"></i> {{ get_post.author.name }}
+                        <i class="far fa-eye me-1"></i> Хиты: {{ get_post.views }}
+                        <i class="far fa-calendar-alt me-1"></i> {{ get_post.created_at|date:"j E Y" }}</p>
+                        <p class="mb-3">{{ get_post.full_text|safe|linebreaks }}</p>
+
+                    <div class="social-share-blog mt-5">
+                        <ul class="social m-0 p-0">
+                            <li>
+                                <p class="m-0 mr-4">Share this post :</p>
+                            </li>
+                            <li><a href="#" class="facebook"><span class="fab fa-facebook-f"></span></a>
+                            </li>
+                            <li><a href="#" class="twitter"><span class="fab fa-twitter"></span></a></li>
+                            <li><a href="#" class="linkedin"><span class="fab fa-linkedin-in"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                        <!--Navigation-->
+                    <div class="nav-links">
+                        <div class="nav-previous">
+                            <a href="web/blog-single.html#url" rel="prev">
+                               <img src="{% static 'images/m2.jpg' %}" alt="" class="img-fluid radius-image">
+                                    <div class="post-data align-self">
+                                        <span class="nav-arrow-label"><i class="fas fa-arrow-left me-1"></i>Предыдущая</span>
+                                    </div>
+                            </a>
+                        </div>
+                        <div class="nav-next text-end">
+                            <a href="blog-single.html#url" rel="next">
+                                <div class="post-data align-self">
+                                    <span class="nav-arrow-label">Последующая<i class="fas fa-arrow-right ms-1"></i></span>
+                                </div>
+                                    <img src="{% static 'images/m3.jpg' %}" alt="" class="img-fluid radius-image">
+                            </a>
+                        </div>
+                    </div>
+                    <!--//Navigation-->
+                    <!-- author card -->
+                    <div class="author-card author-listhny my-lg-5 my-sm-4">
+                        <div class="row">
+                            <div class="author-left col-lg-3 col-md-4 mb-md-0 mb-4">
+                                <a href="#"><img src="{{ get_post.author.avatara.url }}" alt="" class="img-fluid radius-image"></a>
+                            </div>
+                            <div class="author-right col-lg-9 col-md-8 position-relative align-self ps-xl-4 ps-lg-5">
+
+                                        <h4><a href="#" class="title-team-28">Владимир Подводный</a></h4>
+                                        <p class="para-team mb-0 mt-0">Ut blandit eu leo non
+                                            suscipit. Nulla quis lorem neque, mattis lectus. In
+                                            dolor.Lorem ipsum dolor sit amet.</p>
+
+                                        <div class="share-icons mt-4">
+                                            <a href="#facebook"><span class="fab fa-facebook-f"></span></a>
+                                            <a href="#twitter"><span class="fab fa-twitter"></span></a>
+                                            <a href="#pinterest"><span class="fab fa-pinterest-p"></span></a>
+                                            <a href="#google"><span class="fab fa-google-plus-g"></span></a>
+                                            <a href="#dribble" class="vk"><span class="fab fa-dribbble"></span></a>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- // author card -->
+                    <div class="comments">
+                         <div class="comments-grids">
+                                <!--Вывод существующих коммнтариев-->
+                            <div class="leave-comment-form" id="comment">
+                                       {% if messages %}
+                                            <div class="alert alert-success">
+                                               {% for m in messages %}
+                                               {{ m }}
+                                               {% endfor %}
+                                            </div>
+                                       {% endif %}
+                                    <!--//Alert-->
+                                     <!--  context_object_name = 'get_post' в классе GetPost, related_name='comment_post в модели Comment-->
+                                {% if get_post.comment_post.all.exists %}
+                                    <div class="comments">
+                                         <!--get_post - это context_object_name в GetPost, а comments_post это related_name в модели Comment-->
+                                        <h3 class="aside-title ">Последние комментарии ({{ get_post.comment_post.all.count }})</h3>
+                                       <div class="comments-grids">
+                                           {% for comment in get_post.comment_post.all %}
+                                           {% if comment.active %}
+                                               <div class="media-grid">
+                                                   <div class="media">
+                    {% if comment.name.image %}
+                        <a class="com" href="#"><img src="{{ comment.name.image.url }}" class="img-fluid radius-image" width="100px" alt="автор комментария"></a>
+                    {% else %}
+                        <a class="com" href="#"><img src="{% static 'images/avatar.jpg' %}" alt="{{ get_post.title }}" class="img-fluid radius-image" width="100px" alt="автор комментария"></a>
+                    {% endif %}
+
+
+                                                        <div class="media-body comments-grid-right">
+                                                            <h5>{{ comment.name }}</h5>
+                                                            <ul class="p-0 comment">
+                                                                <li class="">{{ comment.created_at|date:"j E Y" }}</li>
+                                                                <li><a href="#comment" class="replay"><i class="fas fa-reply"></i>
+                                                                Ответить</a></li>
+                                                            </ul>
+                                                            <p>{{ comment.message | linebreaks }}</p>
+                                                        </div>
+                                                   </div>
+                                               </div>
+                                           {% endif %}
+                                           {% endfor %}
+                                       </div>
+                                    </div>
+                                {% else %}
+                                     <h4>Пока нет комментариев</h4>
+                                {% endif %}
+                                <!--//Вывод существующих коммнтариев-->
+                            </div>
+   				         </div>
+                         <!--Form Comments-->
+                        <div class="leave-comment-form" id="comment">
+                             <!--Form Comment-->
+                             {% if new_comment %}
+                                 <div class="alert alert-success" role="alert">Ваш комментарий ожидает модерации</div>
+                             {% else %}
+                             <h3 class="aside-title">Оставить комментарий</h3>
+                             {% if request.user.is_authenticated %}
+                             <form action="" id="add_form" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="submit text-right">
+                                    <button form="add_form" class="btn btn-style btn-secondary mt-3" type="submit">Добавить комментарий </button>
+                                </div>
+                            </form>
+                            {% else %}
+                            <p>Для того чтобы оставить комментарий, необходимо зарегистрироваться.</p>
+                            {% endif %}
+                          {% endif %}
+                      <!--//Form Comment-->
+                        </div>
+                    </div>
+                </div>
+                     <!--//Form Comments-->
+            </div>
+   {% include 'inc/sidebar.html' %}
+        </div>
+    </div>
+</section>
+        <!-- //blog-posts -->
+{% endblock %}

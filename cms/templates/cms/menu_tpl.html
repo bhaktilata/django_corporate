@@ -1,10 +1,57 @@
-<ul class="navbar-nav ml-auto">
-  <!-- categories находится в menu.py show_menu -->
-                {% for item in rubrics %}
+
+    <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">О проекте</a>
+                        </li>
+
+    </ul>
+<!-- categories находится в menu.py show_menu -->
+                {% for item in categories %}
                 {% if item.visible %}
-                    <li class="nav-item @@portfolio__active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ item.get_absolute_url }}">{{ item.title_menu }}</a>
                     </li>
                 {% endif %}
                  {% endfor %}
-</ul>
+        <li class="nav-item">
+            <a class="nav-link" href="{# url 'contact' #}">Контакты</a>
+       </li>
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item">
+                    Привет {{ user.username }} | <a class="nav-link" href="{# url 'logout' #}">Выйти</a>
+                </li>
+                {% else %}
+                 <li class="nav-item">
+                     <a class="nav-link" href="{# url 'register' #}">Регистрация</a>
+                  </li>
+                   <li class="nav-item">
+                  <a class="nav-link" href="{# url 'login' #}">Авторизация</a>
+                  </li>
+                {% endif %}
+     </ul>
+
+    <!--Dropdown Menu-->
+   <!--ul class="header_ul navbar-nav mt-2 mt-lg-0">
+                      <li class="nav-item active">
+                          <a class="" href="">Главная</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="dropdown-toggle" href="/port.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Типы перевозок</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Море</a>
+                            <a class="dropdown-item" href="#">Воздух</a>
+                            <a class="dropdown-item" href="#">Авто</a>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <a class="" href="/companys.html">Компании</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="" href="/contact.html">Контакты</a>
+                      </li>
+                  </ul-->
+     <!--//Dropdown Menu-->
+

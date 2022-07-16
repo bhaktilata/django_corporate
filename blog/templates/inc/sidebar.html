@@ -1,0 +1,101 @@
+ {% load static %}
+{% load module_tags %}
+{% load menu_sidebar %}
+  <div class="sidebar-side col-lg-4 col-md-12 col-sm-12 mt-lg-0 mt-5 ps-md-5">
+                        <aside class="sidebar">
+                           <!-- popular topics widget -->
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <div class="sidebar-title">
+                                    <h4>Категории</h4>
+                                </div>
+                                 {% show_menu %}
+                            </div>
+ <div class="sidebar-widget popular-posts">
+             <div class="sidebar-title">
+                 <h4>Курс инженера по тестированию</h4>
+             </div>
+         <!-- Advcake Banner id=1756 -->
+<div id="adb-2d9ad1178a7a8221-59339">
+    <a href="https://go.redav.online/257b2c093c700720"><img src="{% static 'images/banner-test.jpg' %}"  alt="Тестировщие ПО" class="img-fluid"></a>
+</div>
+<div id="adb-a90e4e8e76379621-36957"></div>
+<script>
+window.advcake_runner = function(){
+window.advcake_promo.forEach(function(t){t();});
+window.advcake_promo = [];
+window.advcake_promo.push = function(t){t();};
+}
+function advcakeAddBannera90e4e8e7637962136957(callback) {
+  window.advcake_promo = window.advcake_promo || [];
+  if (window.advcake_webmaster_loaded === undefined) {
+    var s = document.createElement('script'); s.src = 'https://static.advcake.com/js/advcake_webmaster.js'; s.async = true; s.onload = advcake_runner;
+    var x = document.getElementsByTagName("script")[0]; x.parentNode.insertBefore(s, x);
+    window.advcake_webmaster_loaded = true;
+  }
+  window.advcake_promo.push(callback);
+}
+advcakeAddBannera90e4e8e7637962136957(function(){
+  advcakeBannera90e4e8e7637962136957 = new advcake_webmaster('https://static.advcake.com/json/banners/netology/f4c77b24e09d1b955c40bcb76bc28f71.json', 'adb-a90e4e8e76379621-36957', 'https://go.redav.online/a90e4e8e76379621', 'a90e4e8e76379621', null, true);
+  advcakeBannera90e4e8e7637962136957.createBanner();
+});
+</script>
+</div>
+<!-- /Advcake Banner -->
+            <!-- Popular post widget -->
+        <div class="sidebar-widget popular-posts">
+             <div class="sidebar-title">
+                 <h4>Популярные материалы</h4>
+             </div>
+             {% get_popular %}
+        </div>
+              <!-- Popular post widget -->
+                            <!-- recent post widget -->
+                            <div class="sidebar-widget popular-posts">
+                                <div class="sidebar-title">
+                                    <h4>Недавние посты</h4>
+                                </div>
+                                {% get_last %}
+                            </div>
+                            <!-- tags widget -->
+                            <div class="sidebar-sticky">
+                                <div class="sidebar-sticky-fix">
+                                    <div class="sidebar-widget popular-tags">
+                                        <div class="sidebar-title">
+                                            <h4>Тэги</h4>
+                                        </div>
+                                        {% get_tags %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- gallery Widget -->
+                            <div class="sidebar-widget instagram-widget">
+                                <div class="sidebar-title">
+                                    <h4>Галерея</h4>
+                                </div>
+                                <div class="images-outer">
+                                    <a href="/blog-single.html">
+                                        <img src="{% static 'images/m1.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m2.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m3.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m4.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m5.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m1.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                    <a href="https://demo.w3layouts.com/demos_new/template_demo/22-11-2021/work-field-liberty-demo_Free/1477329347/web/blog-single.html">
+                                        <img src="{% static 'images/m2.jpg' %}" alt=" " class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>

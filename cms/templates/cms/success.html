@@ -1,0 +1,88 @@
+  {% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Контакты :: {{ block.super }}
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="inner-banner py-5">
+        <div class="w3l-breadcrumb py-lg-5">
+            <div class="container pt-sm-5 pt-4 pb-sm-4">
+                <h4 class="inner-text-title font-weight-bold pt-5">Обратная связь с нами</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Контакты</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+  <div style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+</div>
+    <!-- contact -->
+    <section class="contact py-5" id="contact">
+        <div class="container pt-md-5 pt-4">
+            <div class="title-heading-w3 text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+                <h3 class="title-style">Обратная связь</h3>
+            </div>
+            <div class="main-grid-contact">
+                                     <!-- form.errors -->
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %} <!--таких тегов есть несколько: error, success, info, debug, warning -->
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+          </div>
+                 <!-- form.errors-->
+         </div>
+    </section>
+    <!-- //contact -->
+
+    <!-- support -->
+    <div class="support pt-5 pb-2" id="support">
+        <div class="container">
+            <h3 class="title-style text-center mb-5">Помощь и поддержка</h3>
+            <div class="row support-bottom text-center mb-5 justify-content-center">
+                <div class="col-lg-4 col-sm-6 support-grid">
+                    <span class="fa fa-laptop"></span>
+                    <h5 class="text-uppercase mt-4 mb-2">Онлайн поддержка</h5>
+                    <p>Ut enim ad minima veniam, quis nostrum ullam corporis suscipit laboriosam.</p>
+                    <a href="/contact.html#call" class="btn btn-style mt-4">
+                        Call Now
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 support-grid mt-sm-0 mt-5">
+                    <span class="fa fa-comments"></span>
+                    <h5 class="text-uppercase mt-4 mb-2">Живой чат 24/7</h5>
+                    <p>Ut enim ad minima veniam, quis nostrum ullam corporis suscipit laboriosam.</p>
+                    <a href="#chat" class="btn btn-style mt-4">
+                        Let's Chat
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 support-grid mt-lg-0 mt-5">
+                    <span class="fa fa-question"></span>
+                    <h5 class="text-uppercase mt-4 mb-2">Любые вопросы</h5>
+                    <p>Ut enim ad minima veniam, quis nostrum ullam corporis suscipit laboriosam.</p>
+                    <a href="#ask" class="btn btn-style mt-4">
+                        Ask Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- support -->
+<div style="margin: 8px auto; display: block; text-align:center;">
+<!---728x90--->
+</div>
+{% endblock %}
